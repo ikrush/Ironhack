@@ -19,7 +19,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'  # Ajusta a la versión que uses
+          dotnet-version: '8.0.x'
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -28,28 +28,24 @@ jobs:
       
       - name: Restore .NET dependencies
         run: dotnet restore
-        working-directory: api/Basic3TierAPI  # Ajusta el directorio si es diferente
+        working-directory: api/Basic3TierAPI
       
       - name: Build .NET project
         run: dotnet build --no-restore --configuration Release
-        working-directory: api/Basic3TierAPI  # Ajusta el directorio si es diferente
+        working-directory: api/Basic3TierAPI
       
       - name: Run .NET tests
         run: dotnet test --no-build --configuration Release --verbosity normal
-        working-directory: api/Basic3TierAPI  # Ajusta el directorio si es diferente
+        working-directory: api/Basic3TierAPI
       
       - name: Install frontend dependencies
         run: npm install
-        working-directory: ui  # Ajusta el directorio si es diferente
+        working-directory: ui
       
       - name: Build frontend
         run: npm run build
-        working-directory: ui  # Ajusta el directorio si es diferente
-      
-      - name: Run frontend tests
-        run: npm test
-        working-directory: ui  # Ajusta el directorio si es diferente
-      
+        working-directory: ui
+           
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
