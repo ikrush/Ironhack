@@ -5,6 +5,7 @@ services:
     build:
       context: ./ui
       dockerfile: Dockerfile
+    image: ikrush/basic-three-tier-ui:latest
     ports:
       - "3000:80"
     depends_on:
@@ -16,6 +17,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+    image: ikrush/basic-three-tier-api:latest
     ports:
       - "5001:80"
     environment:
