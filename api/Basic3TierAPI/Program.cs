@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connString = builder.Configuration.GetValue<string>("ConnectionStrings:Basic3Tier");
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext(connString);
 
 builder.Services.AddRepositories();
