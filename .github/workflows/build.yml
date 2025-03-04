@@ -47,17 +47,18 @@ jobs:
         working-directory: ui
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-      
-      - name: Build and push Docker image for backend (API)
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+     
+      - name: Build and push Docker images
         run: |
-          docker build -t ikrush/basic-three-tier-api:latest -f api/Dockerfile api/Basic3TierAPI
-          docker push ikrush/basic-three-tier-api:latest
-      
-      - name: Build and push Docker image for frontend (UI)
-        run: |
-          docker build -t ikrush/basic-three-tier-ui:latest -f ui/Dockerfile ui
-          docker push ikrush/basic-three-tier-ui:latest  
+          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.yml push
+  
+      - name: Logout from Docker Hub
+        run: docker logout
            
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
