@@ -51,13 +51,13 @@ jobs:
       
       - name: Build and push Docker image for backend (API)
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/basic-three-tier-api:latest -f api/Dockerfile backend
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/basic-three-tier-api:latest
+          docker build -t ikrush/basic-three-tier-api:latest -f api/Dockerfile backend
+          docker push ikrush/basic-three-tier-api:latest
       
       - name: Build and push Docker image for frontend (UI)
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/basic-three-tier-ui:latest -f ui/Dockerfile frontend
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/basic-three-tier-ui:latest  
+          docker build -t ikrush/basic-three-tier-ui:latest -f ui/Dockerfile frontend
+          docker push ikrush/basic-three-tier-ui:latest  
            
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
