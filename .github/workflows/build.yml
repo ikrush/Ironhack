@@ -51,12 +51,12 @@ jobs:
       
       - name: Build and push Docker image for backend (API)
         run: |
-          docker build -t ikrush/basic-three-tier-api:latest -f api/Dockerfile backend
+          docker build -t ikrush/basic-three-tier-api:latest -f api/Dockerfile api/Basic3TierAPI
           docker push ikrush/basic-three-tier-api:latest
       
       - name: Build and push Docker image for frontend (UI)
         run: |
-          docker build -t ikrush/basic-three-tier-ui:latest -f ui/Dockerfile frontend
+          docker build -t ikrush/basic-three-tier-ui:latest -f ui/Dockerfile ui
           docker push ikrush/basic-three-tier-ui:latest  
            
       - name: SonarQube Scan
