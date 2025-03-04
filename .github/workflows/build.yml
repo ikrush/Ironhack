@@ -45,6 +45,19 @@ jobs:
       - name: Build frontend
         run: npm run build
         working-directory: ui
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+      
+      - name: Build and push Docker image for backend (API)
+        run: |
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/Basic3TierAPI:latest -f api/Dockerfile Basic3TierAPI
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/Basic3TierAPI:latest
+      
+      - name: Build and push Docker image for frontend (UI)
+        run: |
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/Basic3TierUI:latest -f ui/Dockerfile Basic3TierUI
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/Basic3TierUI:latest  
            
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
