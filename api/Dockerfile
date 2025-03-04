@@ -1,6 +1,6 @@
 # Use SDK image for building
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /api
+WORKDIR /src
 
 # Copy solution and project files
 COPY ["Basic3TierAPI/Basic3TierAPI.csproj", "Basic3TierAPI/"]
@@ -14,7 +14,7 @@ RUN dotnet restore "Basic3TierAPI/Basic3TierAPI.csproj"
 COPY . .
 
 # Build the application
-WORKDIR "/api/Basic3TierAPI"
+WORKDIR "/src/Basic3TierAPI"
 RUN dotnet build "Basic3TierAPI.csproj" -c Release -o /app/build
 
 # Publish the application
