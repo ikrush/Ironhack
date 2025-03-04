@@ -14,7 +14,7 @@ RUN dotnet restore "Basic3TierAPI/Basic3TierAPI.csproj"
 COPY . .
 
 # Build the application
-WORKDIR "/src/Basic3TierAPI"
+WORKDIR "/api/Basic3TierAPI"
 RUN dotnet build "Basic3TierAPI.csproj" -c Release -o /app/build
 
 # Publish the application
