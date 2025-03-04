@@ -28,15 +28,15 @@ jobs:
       
       - name: Restore .NET dependencies
         run: dotnet restore
-        working-directory: api  # Ajusta el directorio si es diferente
+        working-directory: api/Basic3TierAPI  # Ajusta el directorio si es diferente
       
       - name: Build .NET project
         run: dotnet build --no-restore --configuration Release
-        working-directory: api  # Ajusta el directorio si es diferente
+        working-directory: api/Basic3TierAPI  # Ajusta el directorio si es diferente
       
       - name: Run .NET tests
         run: dotnet test --no-build --configuration Release --verbosity normal
-        working-directory: api  # Ajusta el directorio si es diferente
+        working-directory: api/Basic3TierAPI  # Ajusta el directorio si es diferente
       
       - name: Install frontend dependencies
         run: npm install
